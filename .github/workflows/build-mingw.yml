@@ -64,6 +64,7 @@ jobs:
             g++ --version && 
             ./configure --help &&
             ./configure --with-gmp="$gmp_root" --with-mpfr="$mpfr_root" --prefix="$(pwd)/${{ env.installationPath }}" &&
+            cat Makefile
             make VERBOSE=1 && make VERBOSE=1 install
             
       # - name: copy customized openssl-config.cmake
