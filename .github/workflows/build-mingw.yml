@@ -42,16 +42,28 @@ jobs:
       - name: curl cmake-3.24.0-windows-x86_64.zip
         shell: cmd
         run: curl https://github.com/Kitware/CMake/releases/download/v3.24.0/cmake-3.24.0-windows-x86_64.zip -L --output cmake-3.24.0-windows-x86_64.zip && dir && 7z.exe x cmake-3.24.0-windows-x86_64.zip
-      
+
+      - shell: cmd
+        run: |
+          curl "https://github.com/dirkarnez/gmp-prebuilt/releases/download/v6.3.0/gmp-v6.3.0-mingw64-x86_64-posix-seh-rev0-8.1.0.zip" -L -O -J &&^
+          7z.exe x gmp-v6.3.0-mingw64-x86_64-posix-seh-rev0-8.1.0.zip -o"gmp-v6.3.0-mingw64-x86_64-posix-seh-rev0-8.1.0"
+
+      - shell: cmd
+        run: |
+          curl "https://github.com/dirkarnez/mpfr-prebuilt/releases/download/v4.2.0/mpfr-v4.2.0-mingw64-x86_64-posix-seh-rev0-8.1.0.zip" -L -O -J &&^
+          7z.exe x mpfr-v4.2.0-mingw64-x86_64-posix-seh-rev0-8.1.0.zip -o"mpfr-v4.2.0-mingw64-x86_64-posix-seh-rev0-8.1.0"
+          
       - name: set PATH, check mingw version, cmake generate, build and install
         shell: msys2 {0}
         run: |
             workspace=$(pwd) &&
             export PATH="$workspace/mingw64:$workspace/mingw64/bin:$workspace/msys64/usr/bin:/usr/bin" &&
             cd binutils-gdb && 
+            gmp_root="$workspace/gmp-v6.3.0-mingw64-x86_64-posix-seh-rev0-8.1.0" &&
+            mpfr_root="$workspace/mpfr-v4.2.0-mingw64-x86_64-posix-seh-rev0-8.1.0" &&
             g++ --version && 
             ./configure --help &&
-            ./configure --prefix="$(pwd)/${{ env.installationPath }}" &&
+            ./configure --with-gmp="$gmp_root" --with-mpfr="$mpfr_root" --prefix="$(pwd)/${{ env.installationPath }}" &&
             mingw32-make.exe install
             
       # - name: copy customized openssl-config.cmake
