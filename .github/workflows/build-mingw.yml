@@ -51,7 +51,7 @@ jobs:
             cd binutils-gdb && 
             g++ --version && 
             ./configure --help &&
-            ./configure -static --prefix="$(pwd)/${{ env.installationPath }}" &&
+            ./configure --prefix="$(pwd)/${{ env.installationPath }}" &&
             mingw32-make.exe install
             
       # - name: copy customized openssl-config.cmake
