@@ -31,7 +31,7 @@ jobs:
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
-          install: make autoconf automake libtool autogen perl
+          install: make autoconf automake libtool autogen perl make
           
       - name: download compiler
         shell: cmd
@@ -64,7 +64,7 @@ jobs:
             g++ --version && 
             ./configure --help &&
             ./configure --with-gmp="$gmp_root" --with-mpfr="$mpfr_root" --prefix="$(pwd)/${{ env.installationPath }}" &&
-            mingw32-make.exe install
+            make install
             
       # - name: copy customized openssl-config.cmake
       #   shell: cmd
