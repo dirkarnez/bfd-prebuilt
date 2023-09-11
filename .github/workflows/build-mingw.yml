@@ -20,7 +20,7 @@ jobs:
     env:
       libraryName: binutils-gdb
       installationPath: binutils-gdb-installation
-      tagName: binutils-2_41-release # target tag
+      tagName: binutils-2_41-release
       mingwTargetZip: binutils-gdb-${{ github.ref_name }}-mingw64-x86_64-posix-seh-rev0-8.1.0.zip
     steps:
       - uses: actions/checkout@v3
@@ -31,7 +31,7 @@ jobs:
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
-          install: make autoconf automake libtool autogen perl make texinfo flex bison gas gprof 
+          install: make autoconf automake libtool autogen perl make texinfo flex bison
           
       - name: download compiler
         shell: cmd
