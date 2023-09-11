@@ -64,7 +64,7 @@ jobs:
             g++ --version && 
             ./configure --help &&
             ./configure --with-gmp="$gmp_root" --with-mpfr="$mpfr_root" --prefix="$(pwd)/${{ env.installationPath }}" &&
-            make install
+            mingw32-make
             
       # - name: copy customized openssl-config.cmake
       #   shell: cmd
