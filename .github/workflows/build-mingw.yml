@@ -31,7 +31,7 @@ jobs:
         uses: msys2/setup-msys2@v2
         with:
           msystem: MINGW64
-          install: make autoconf automake libtool autogen perl make
+          install: make autoconf automake libtool autogen perl make texinfo
           
       - name: download compiler
         shell: cmd
