@@ -21,7 +21,7 @@ jobs:
       libraryName: binutils-gdb
       installationPath: binutils-gdb-installation
       tagName: binutils-2_41-release # target tag
-      mingwTargetZip: openssl-${{ github.ref_name }}-mingw64-x86_64-posix-seh-rev0-8.1.0.zip
+      mingwTargetZip: binutils-gdb-${{ github.ref_name }}-mingw64-x86_64-posix-seh-rev0-8.1.0.zip
     steps:
       - uses: actions/checkout@v3
       
